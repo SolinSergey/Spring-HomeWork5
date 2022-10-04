@@ -1,12 +1,14 @@
 package ru.gb.hw5.controllers;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.gb.hw5.DAO.ProductDao;
 import ru.gb.hw5.entitys.Product;
-import ru.gb.hw5.entitys.ProductInDB;
+import ru.gb.hw5.entitys.ProductOld;
 import ru.gb.hw5.service.ProductService;
 
 @Controller
@@ -15,11 +17,17 @@ public class ProductController {
     private ProductService productService;
     private ProductDao productDao;
 
+    private SessionFactory sessionFactory;
+
     @Autowired
     public void setProductService(ProductService productService) {
         this.productService = productService;
     }
 
+    @Autowired
+    public void setSessionFactory(SessionFactory sessionFactory){
+        this.sessionFactory=sessionFactory;
+    }
     @Autowired
     public void setProductDao(ProductDao productDao){
         this.productDao=productDao;
@@ -27,7 +35,7 @@ public class ProductController {
 
     @GetMapping("/list")
     public String list(Model model) {
-        Product[] products = new Product[productService.getSizeProductsList()];
+        ProductOld[] products = new ProductOld[productService.getSizeProductsList()];
         for (int i = 0; i < productService.getSizeProductsList(); i++) {
             products[i] = productService.getProductById(i);
         }
@@ -37,15 +45,21 @@ public class ProductController {
 
     @GetMapping(path = "/byid")
     public String productById(Model model, @RequestParam int id) {
-        Product product = productService.getProductById(0);
-        ProductInDB product1=productDao.findById(0L);
-        model.addAttribute("result", product);
+        //ProductOld product = productService.getProductById(0);
+        //ProductInDB product1=productDao.findById(0L);
+        //model.addAttribute("result", product);
+        Product product;
+        Session session=sessionFactory.getCurrentSession();
+        session.beginTransaction();
+        product=session.get(Product.class,1);
+        session.getTransaction().commit();
+        System.out.println(product);
         return "byid";
     }
 
     @GetMapping("/showForm")
     public String showSimpleForm(Model model) {
-        Product product = new Product();
+        ProductOld product = new ProductOld();
         product.setId(-1);
         product.setTitle("");
         product.setCost(0);
@@ -54,7 +68,7 @@ public class ProductController {
     }
 
     @PostMapping("/processForm")
-    public String processForm(@ModelAttribute Product product, Model model) {
+    public String processForm(@ModelAttribute ProductOld product, Model model) {
         productService.addProductToRepository(product);
         model.addAttribute("product", product);
         return "formresult";

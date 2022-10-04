@@ -1,45 +1,55 @@
 package ru.gb.hw5.entitys;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="product")
 public class Product {
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
+    private Integer id;
+
+    @Column
     private String title;
-    private int cost;
+
+    @Column
+    private Integer price;
+
 
     public Product() {
     }
 
-    public Product(int id, String title, int cost) {
-        this.id = id;
-        this.title = title;
-        this.cost = cost;
-    }
-
-    @Override
-    public String toString() {
-        return id + " " + title + " " + cost;
-    }
-
-    public int getId() {
+    public Integer getId() {
         return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public int getCost() {
-        return cost;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public void setTitle(String title) {
         this.title = title;
     }
 
-    public void setCost(int cost) {
-        this.cost = cost;
+    public Integer getPrice() {
+        return price;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", price=" + price +
+                '}';
     }
 }

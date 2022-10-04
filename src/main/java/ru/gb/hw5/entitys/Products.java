@@ -1,13 +1,13 @@
 package ru.gb.hw5.entitys;
 
 public class Products {
-    private Product[] products;
+    private ProductOld[] products;
 
-    public Product[] getProducts() {
+    public ProductOld[] getProducts() {
         return products;
     }
 
-    public void setProducts(Product[] products) {
+    public void setProducts(ProductOld[] products) {
         this.products = products;
     }
 }

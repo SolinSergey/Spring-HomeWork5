@@ -2,7 +2,7 @@ package ru.gb.hw5.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import ru.gb.hw5.entitys.Product;
+import ru.gb.hw5.entitys.ProductOld;
 import ru.gb.hw5.repository.ProductsRepository;
 
 @Component
@@ -14,11 +14,11 @@ public class ProductService {
         this.productsRepository = productsRepository;
     }
 
-    public Product getProductById(int id) {
+    public ProductOld getProductById(int id) {
         return productsRepository.getProductsById(id);
     }
 
-    public void addProductToRepository(Product product) {
+    public void addProductToRepository(ProductOld product) {
         productsRepository.addProducts(product);
     }
 
