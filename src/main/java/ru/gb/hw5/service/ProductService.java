@@ -1,9 +1,9 @@
-package ru.gb.hw4.service;
+package ru.gb.hw5.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import ru.gb.hw4.entites.Product;
-import ru.gb.hw4.repository.ProductsRepository;
+import ru.gb.hw5.entitys.Product;
+import ru.gb.hw5.repository.ProductsRepository;
 
 @Component
 public class ProductService {

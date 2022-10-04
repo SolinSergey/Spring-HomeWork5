@@ -1,7 +1,7 @@
-package ru.gb.hw4.repository;
+package ru.gb.hw5.repository;
 
 import org.springframework.stereotype.Component;
-import ru.gb.hw4.entites.Product;
+import ru.gb.hw5.entitys.Product;
 
 import java.util.ArrayList;
 

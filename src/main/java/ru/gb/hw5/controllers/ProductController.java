@@ -1,20 +1,28 @@
-package ru.gb.hw4.controllers;
+package ru.gb.hw5.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ru.gb.hw4.entites.Product;
-import ru.gb.hw4.service.ProductService;
+import ru.gb.hw5.DAO.ProductDao;
+import ru.gb.hw5.entitys.Product;
+import ru.gb.hw5.entitys.ProductInDB;
+import ru.gb.hw5.service.ProductService;
 
 @Controller
 @RequestMapping("/product")
 public class ProductController {
     private ProductService productService;
+    private ProductDao productDao;
 
     @Autowired
     public void setProductService(ProductService productService) {
         this.productService = productService;
+    }
+
+    @Autowired
+    public void setProductDao(ProductDao productDao){
+        this.productDao=productDao;
     }
 
     @GetMapping("/list")
@@ -29,7 +37,8 @@ public class ProductController {
 
     @GetMapping(path = "/byid")
     public String productById(Model model, @RequestParam int id) {
-        Product product = productService.getProductById(id);
+        Product product = productService.getProductById(0);
+        ProductInDB product1=productDao.findById(0L);
         model.addAttribute("result", product);
         return "byid";
     }
