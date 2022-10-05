@@ -3,29 +3,24 @@ package ru.gb.hw5.entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name="product")
+@Table (name = "product")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
-    private Integer id;
+    private int id;
 
     @Column(name="title")
     private String title;
 
     @Column(name="price")
-    private Integer price;
+    private int price;
 
 
     public Product() {
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getTitle() {
@@ -36,7 +31,7 @@ public class Product {
         this.title = title;
     }
 
-    public Integer getPrice() {
+    public int getPrice() {
         return price;
     }
 

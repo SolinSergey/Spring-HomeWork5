@@ -12,7 +12,7 @@ import ru.gb.hw5.entities.ProductOld;
 import ru.gb.hw5.service.ProductService;
 
 @Controller
-@RequestMapping("/product")
+@RequestMapping("/prod")
 public class ProductController {
     private ProductService productService;
     private ProductDao productDao;
@@ -52,7 +52,7 @@ public class ProductController {
         Session session=null;
         session=sessionFactory.getCurrentSession();
         session.beginTransaction();
-        product=session.get(Product.class,1);
+        product=session.get(Product.class,id);
         session.getTransaction().commit();
         System.out.println(product);
         return "byid";
