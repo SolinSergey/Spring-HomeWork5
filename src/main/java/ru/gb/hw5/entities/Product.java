@@ -1,4 +1,4 @@
-package ru.gb.hw5.entitys;
+package ru.gb.hw5.entities;
 
 import javax.persistence.*;
 
@@ -7,13 +7,13 @@ import javax.persistence.*;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
+    @Column(name="id")
     private Integer id;
 
-    @Column
+    @Column(name="title")
     private String title;
 
-    @Column
+    @Column(name="price")
     private Integer price;
 
 

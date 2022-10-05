@@ -2,7 +2,7 @@ package ru.gb.hw5.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import ru.gb.hw5.entitys.ProductOld;
+import ru.gb.hw5.entities.ProductOld;
 import ru.gb.hw5.repository.ProductsRepository;
 
 @Component

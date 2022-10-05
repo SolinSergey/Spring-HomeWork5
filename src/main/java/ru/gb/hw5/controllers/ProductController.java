@@ -7,8 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.gb.hw5.DAO.ProductDao;
-import ru.gb.hw5.entitys.Product;
-import ru.gb.hw5.entitys.ProductOld;
+import ru.gb.hw5.entities.Product;
+import ru.gb.hw5.entities.ProductOld;
 import ru.gb.hw5.service.ProductService;
 
 @Controller
@@ -49,7 +49,8 @@ public class ProductController {
         //ProductInDB product1=productDao.findById(0L);
         //model.addAttribute("result", product);
         Product product;
-        Session session=sessionFactory.getCurrentSession();
+        Session session=null;
+        session=sessionFactory.getCurrentSession();
         session.beginTransaction();
         product=session.get(Product.class,1);
         session.getTransaction().commit();

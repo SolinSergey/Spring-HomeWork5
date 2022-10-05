@@ -1,4 +1,4 @@
-package ru.gb.hw5.entitys;
+package ru.gb.hw5.entities;
 
 public class ProductOld {
     private int id;

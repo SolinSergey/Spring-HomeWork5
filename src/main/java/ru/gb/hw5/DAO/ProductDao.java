@@ -2,7 +2,7 @@ package ru.gb.hw5.DAO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import ru.gb.hw5.entitys.Product;
+import ru.gb.hw5.entities.Product;
 
 @Component
 public class ProductDao {
