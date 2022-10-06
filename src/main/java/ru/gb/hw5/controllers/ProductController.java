@@ -2,11 +2,13 @@ package ru.gb.hw5.controllers;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.gb.hw5.DAO.ProductDao;
+import ru.gb.hw5.config.HibernateConfig;
 import ru.gb.hw5.entities.Product;
 import ru.gb.hw5.entities.ProductOld;
 import ru.gb.hw5.service.ProductService;
@@ -17,7 +19,7 @@ public class ProductController {
     private ProductService productService;
     private ProductDao productDao;
 
-    private SessionFactory sessionFactory;
+    private Session session=null;
 
     @Autowired
     public void setProductService(ProductService productService) {
@@ -25,8 +27,9 @@ public class ProductController {
     }
 
     @Autowired
-    public void setSessionFactory(SessionFactory sessionFactory){
-        this.sessionFactory=sessionFactory;
+    public void setSession(HibernateConfig hibernateConfig){
+        this.session=hibernateConfig.getSessionFactory();
+        System.out.println(session);
     }
     @Autowired
     public void setProductDao(ProductDao productDao){
@@ -45,16 +48,7 @@ public class ProductController {
 
     @GetMapping(path = "/byid")
     public String productById(Model model, @RequestParam int id) {
-        //ProductOld product = productService.getProductById(0);
-        //ProductInDB product1=productDao.findById(0L);
-        //model.addAttribute("result", product);
-        Product product;
-        Session session=null;
-        session=sessionFactory.getCurrentSession();
-        session.beginTransaction();
-        product=session.get(Product.class,id);
-        session.getTransaction().commit();
-        System.out.println(product);
+        productDao.findById(id);
         return "byid";
     }
 

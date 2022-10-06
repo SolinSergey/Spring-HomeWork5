@@ -1,12 +1,16 @@
 package ru.gb.hw5.entities;
 
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
+
 
 @Entity
 @Table (name = "product")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
     private int id;
 
     @Column(name="title")
@@ -19,6 +23,18 @@ public class Product {
     public Product() {
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
     public int getId() {
         return id;
     }
@@ -27,17 +43,11 @@ public class Product {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
 
     public int getPrice() {
         return price;
     }
 
-    public void setPrice(Integer price) {
-        this.price = price;
-    }
 
     @Override
     public String toString() {
